@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Management</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Article Management</h1>
+
+        <!-- Project Name과 Article 입력 -->
+        <div>
+            <label for="projectName">Project Name:</label>
+            <input type="text" id="projectName" name="projectName" required>
+        </div>
+        
+        <div>
+            <label for="articleContent">Article:</label>
+            <textarea id="articleContent" name="articleContent" rows="5" required oninput="autoResizeTextarea(this)"></textarea>
+        </div>
+
+        <!-- 코드 입력 -->
+        <div>
+            <label>Secret Code:</label>
+            <input id="secretCode" name="secretCode" required>
+        </div>
+
+        <!-- 업로드 및 불러오기 버튼 -->
+        <div class="button-group">
+            <button onclick="uploadArticle()">Upload Article</button>
+            <button onclick="fetchArticle()">Load Article</button>
+        </div>
+    </div>
+</body>
+<script src="./index.js"></script>
+</html>
