@@ -4,35 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Article Management</title>
+    <title>히어로 콘텐츠 기사 작성 페이지</title>
     <link rel="stylesheet" href="./index.css">
 </head>
 <body>
     <div class="container">
-        <h1>Article Management</h1>
-
-        <!-- Project Name과 Article 입력 -->
+        <h1>히어로 콘텐츠 기사 작성</h1>
         <div>
-            <label for="projectName">Project Name:</label>
+            <label for="projectName">프로젝트:</label>
             <input type="text" id="projectName" name="projectName" required>
+            <button onclick="fetchArticle()">기사 불러오기</button>
         </div>
         
         <div>
-            <label for="articleContent">Article:</label>
+            <label for="articleContent">기사:</label>
             <textarea id="articleContent" name="articleContent" rows="5" required oninput="autoResizeTextarea(this)"></textarea>
         </div>
-
-        <!-- 코드 입력 -->
         <div>
-            <label>Secret Code:</label>
+            <label>Code:</label>
             <input id="secretCode" name="secretCode" required>
         </div>
 
-        <!-- 업로드 및 불러오기 버튼 -->
-        <div class="button-group">
-            <button onclick="uploadArticle()">Upload Article</button>
-            <button onclick="fetchArticle()">Load Article</button>
-        </div>
+        <button onclick="uploadArticle()">기사 업로드</button>
     </div>
 </body>
 <script src="./index.js"></script>

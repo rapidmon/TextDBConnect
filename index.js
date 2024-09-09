@@ -43,6 +43,7 @@ async function fetchArticle() {
 
     if (result.article_Data[0]) {
         document.getElementById('articleContent').value = result.article_Data[0].Article;
+        document.getElementById('articleContent').style.height = document.getElementById('articleContent').scrollHeight + 'px'; 
         alert("Article loaded successfully.");
     } else {
         alert("No article found for the given Project Name.");
