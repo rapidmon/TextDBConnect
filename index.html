@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>히어로 콘텐츠 기사 작성 페이지</title>
     <link rel="stylesheet" href="./index.css">
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
 </head>
 <body>
     <div class="container">
@@ -14,11 +15,10 @@
             <label for="projectName">프로젝트:</label>
             <input type="text" id="projectName" name="projectName" required>
             <button onclick="fetchArticle()">기사 불러오기</button>
-        </div>
-        
+        </div>   
         <div>
-            <label for="articleContent">기사:</label>
-            <textarea id="articleContent" name="articleContent" rows="5" required oninput="autoResizeTextarea(this)"></textarea>
+            <label for="articleContent">Article:</label>
+            <div id="editor"></div>
         </div>
         <div>
             <label>Code:</label>
@@ -28,5 +28,6 @@
         <button onclick="uploadArticle()">기사 업로드</button>
     </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 <script src="./index.js"></script>
 </html>

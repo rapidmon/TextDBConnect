@@ -1,15 +1,26 @@
-function autoResizeTextarea(textarea) {
-    textarea.style.height = 'auto'; // 기존 높이를 초기화
-    textarea.style.height = textarea.scrollHeight + 'px'; // 내용에 맞게 높이 조정
+const quill = new Quill('#editor', {
+    theme: 'snow'
+});
+
+// 에디터의 텍스트 변화 감지 시 자동 높이 조정
+quill.on('text-change', function() {
+    autoResizeQuillEditor();
+});
+
+function autoResizeQuillEditor() {
+    const editor = document.querySelector('.ql-editor'); // Quill 에디터 내부 편집 영역
+    editor.style.height = 'auto'; // 기존 높이를 초기화
+    editor.style.height = editor.scrollHeight + 'px'; // 내용에 맞게 높이 조정
 }
 
 // 업로드 기능
 async function uploadArticle() {
     const projectName = document.getElementById('projectName').value;
-    const articleContent = document.getElementById('articleContent').value;
+    const articleContent = quill.root.innerHTML; // Quill 에디터의 내용을 가져옴
     const secretCode = document.getElementById('secretCode').value;
 
-    const bodyText = `ProjectName=${projectName}&Article=${articleContent}&Code=${secretCode}`;
+    // 쿼리 스트링 형식으로 변환 (Quill의 HTML 내용을 encode)
+    const bodyText = `ProjectName=${encodeURIComponent(projectName)}&Article=${encodeURIComponent(articleContent)}&Code=${encodeURIComponent(secretCode)}`;
 
     const response = await fetch('https://qyolel65iqtf6jpurhmjm4nble0taiua.lambda-url.ap-southeast-2.on.aws/', {
         method: 'POST',
@@ -24,8 +35,7 @@ async function uploadArticle() {
 
     // 입력칸 초기화
     document.getElementById('projectName').value = '';
-    document.getElementById('articleContent').value = '';
-    document.getElementById('articleContent').style.height = 'auto';
+    quill.setText(''); // Quill 에디터 내용을 초기화
     document.getElementById('secretCode').value = '';
 }
 
@@ -41,9 +51,8 @@ async function fetchArticle() {
     const response = await fetch(`https://nejcsnqedlknfloylmfdverope0ptezn.lambda-url.ap-southeast-2.on.aws/?ProjectName=${projectName}`);
     const result = await response.json();
 
-    if (result.article_Data[0]) {
-        document.getElementById('articleContent').value = result.article_Data[0].Article;
-        document.getElementById('articleContent').style.height = document.getElementById('articleContent').scrollHeight + 'px'; 
+    if (result.article_Data.length > 0) {
+        quill.root.innerHTML = result.article_Data[0].Article; // Quill 에디터에 내용을 채움
         alert("Article loaded successfully.");
     } else {
         alert("No article found for the given Project Name.");
