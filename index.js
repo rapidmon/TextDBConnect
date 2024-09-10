@@ -1,5 +1,16 @@
 const quill = new Quill('#editor', {
-    theme: 'snow'
+    theme: 'snow',
+    modules: {
+        toolbar: [
+            [{ 'size': [] }], // 폰트와 크기 선택
+            ['bold', 'italic', 'underline', 'strike'], // 굵기, 기울임, 밑줄, 취소선
+            [{ 'color': [] }, { 'background': [] }], // 텍스트 색상, 배경 색상
+            [{ 'align': [] }], // 정렬
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }], // 리스트
+            ['link', 'image'], // 링크, 이미지
+            ['clean'] // 서식 제거
+        ]
+    }
 });
 
 // 에디터의 텍스트 변화 감지 시 자동 높이 조정
