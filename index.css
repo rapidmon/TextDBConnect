@@ -24,7 +24,7 @@ label {
     margin-top: 10px;
     color: #555;
 }
-input, textarea, button {
+input, button {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -32,9 +32,14 @@ input, textarea, button {
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
-textarea{
-    resize: none;
-    overflow: hidden;
+#editor {
+    height: auto;
+    background-color: white;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+}
+.ql-editor {
+    min-height: 200px; /* 최소 높이 설정 */
 }
 button {
     background-color: #007bff;
