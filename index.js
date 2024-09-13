@@ -43,11 +43,6 @@ async function uploadArticle() {
 
     const result = await response.json();
     alert(result.message);
-
-    // 입력칸 초기화
-    document.getElementById('projectName').value = '';
-    quill.setText(''); // Quill 에디터 내용을 초기화
-    document.getElementById('secretCode').value = '';
 }
 
 // 불러오기 기능
